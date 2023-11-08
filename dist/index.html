@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Aggregator</title>
+    <link rel="stylesheet" href="/index.1f8823c9.css">
+    <link rel="stylesheet" href="/index.c92073ef.css">
+    <script defer="" src="/index.62406edb.js"></script>
+  </head>
+
+  <body>
+    <svg class="top__svg" width="29" height="29" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 5L14 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M4 12L20 12" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M4 19L20 19" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+
+    <main class="container">
+      <h1>News Aggregator</h1>
+
+      <div class="category-filter">
+        <div class="grid">
+          <button class="category-button" onclick="filterNews('business')">
+            Business
+          </button>
+          <button class="category-button" onclick="filterNews('technology')">
+            Entertainment
+          </button>
+          <button class="category-button" onclick="filterNews('entertainment')">
+            General
+          </button>
+          <button class="category-button" onclick="filterNews('entertainment')">
+            Health
+          </button>
+          <button class="category-button" onclick="filterNews('entertainment')">
+            Science
+          </button>
+          <button class="category-button" onclick="filterNews('entertainment')">
+            Sports
+          </button>
+          <button class="category-button" onclick="filterNews('entertainment')">
+            Technology
+          </button>
+        </div>
+      </div>
+      <input type="search" class="search-bar" placeholder="Search news...">
+      <div class="no__response">
+        <div>
+          <svg class="sad__svg" width="94" height="94" viewbox="0 0 24 24" fill="red" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16L13.5 13.5L11.5 11.5L14.5 9L12 5C12 5 12.4578 4.50096 13.0344 4.06801C14.4404 3.01211 16.7809 2.34923 19.4626 3.99415C22.9819 6.15294 23.7783 13.2749 15.6605 19.2834C14.1143 20.4278 13.3412 21 12 21C10.6588 21 9.88572 20.4278 8.33953 19.2834C0.221721 13.2749 1.01807 6.15294 4.53744 3.99415C6.43149 2.83234 8.15537 2.82181 9.5 3.28788" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <h2>No articles found in the response.</h2>
+        </div>
+      </div>
+      <div id="newsContainer">
+        <!-- <article>
+          <div class="news-card" onclick="displayNewsDetail()">
+            <div class="img__box">
+              <img
+                class="news-image"
+                src="https://placekitten.com/100/100"
+                alt="News Image"
+              />
+            </div>
+            <div class="news-details">
+              <div class="news-category --primary">Business</div>
+              <h2 class="news-title">News Title</h2>
+              <div class="news-description">
+                News Description goes here. This is a brief overview of the news
+                article.
+              </div>
+              <div class="news-date">July 1, 2023</div>
+            </div>
+          </div>
+        </article> -->
+      </div>
+    </main>
+  <script src="/KCCD.3464ddca.js"></script></body>
+</html>

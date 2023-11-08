@@ -1,0 +1,125 @@
+/* Blue-grey Light scheme (Default) */
+/* Can be forced with data-theme="light" */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --primary: #546e7a;
+  --primary-hover: #455a64;
+  --primary-focus: rgba(84, 110, 122, 0.125);
+  --primary-inverse: #fff;
+}
+
+/* Blue-grey Dark scheme (Auto) */
+/* Automatically enabled if user has Dark mode enabled */
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --primary: #546e7a;
+    --primary-hover: #607d8b;
+    --primary-focus: rgba(84, 110, 122, 0.25);
+    --primary-inverse: #fff;
+  }
+}
+
+/* Blue-grey Dark scheme (Forced) */
+/* Enabled if forced with data-theme="dark" */
+[data-theme="dark"] {
+  --primary: #546e7a;
+  --primary-hover: #607d8b;
+  --primary-focus: rgba(84, 110, 122, 0.25);
+  --primary-inverse: #fff;
+}
+
+/* Blue-grey (Common styles) */
+:root {
+  --form-element-active-border-color: var(--primary);
+  --form-element-focus-color: var(--primary-focus);
+  --switch-color: var(--primary-inverse);
+  --switch-checked-background-color: var(--primary);
+}
+
+/* .category-filter {
+  margin-bottom: 1rem;
+  width: 27rem;
+} */
+
+.top__svg {
+  float: right;
+  margin: 1rem;
+}
+
+.category-button {
+  font-size: 0.8rem;
+}
+
+article {
+  margin: 0;
+  height: max-content;
+  padding: 0 0;
+  margin-bottom: 1rem;
+}
+
+.news-card {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--card-bg-color);
+  overflow: hidden; /* To contain floated elements */
+}
+
+.img__box {
+  width: 25%;
+}
+
+.news-image {
+  float: left;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  height: 150px;
+}
+
+.news-details {
+  overflow: hidden; /* To contain floated elements */
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.news-title {
+  font-size: 95%;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.news-description {
+  color: var(--text-secondary-color);
+  font-size: 85%;
+}
+
+.news-category {
+  color: var(--primary-color);
+  padding: 0.2rem;
+  background: #546e7a;
+  width: 3.4rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.news-date {
+  color: var(--text-secondary-color);
+  font-size: 75%;
+}
+
+
+.no__response {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 2rem;
+  text-align: center;
+  display: none;
+}
