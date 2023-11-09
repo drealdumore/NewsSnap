@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Aggregator</title>
+    <title>NewsSnap</title>
     <link rel="stylesheet" href="/index.1f8823c9.css">
     <link rel="stylesheet" href="/index.c92073ef.css">
     <script defer="" src="/index.62406edb.js"></script>
@@ -17,34 +17,36 @@
     </svg>
 
     <main class="container">
-      <h1>News Aggregator</h1>
+      <h1>NewsSnap</h1>
 
       <div class="category-filter">
         <div class="grid">
           <button class="category-button" onclick="filterNews('business')">
             Business
           </button>
-          <button class="category-button" onclick="filterNews('technology')">
+          <button class="category-button" onclick="filterNews('entertainment')">
             Entertainment
           </button>
-          <button class="category-button" onclick="filterNews('entertainment')">
+          <button class="category-button" onclick="filterNews('general')">
             General
           </button>
-          <button class="category-button" onclick="filterNews('entertainment')">
+          <button class="category-button" onclick="filterNews('health')">
             Health
           </button>
-          <button class="category-button" onclick="filterNews('entertainment')">
+          <button class="category-button" onclick="filterNews('science')">
             Science
           </button>
-          <button class="category-button" onclick="filterNews('entertainment')">
+          <button class="category-button" onclick="filterNews('sports')">
             Sports
           </button>
-          <button class="category-button" onclick="filterNews('entertainment')">
+          <button class="category-button" onclick="filterNews('technology')">
             Technology
           </button>
         </div>
       </div>
+
       <input type="search" class="search-bar" placeholder="Search news...">
+
       <div class="no__response">
         <div>
           <svg class="sad__svg" width="94" height="94" viewbox="0 0 24 24" fill="red" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +56,30 @@
         </div>
       </div>
       <div id="newsContainer">
+        <!-- <article class="loader">
+          <div class="wrapper">
+            <div class="circle"></div>
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+            <div class="line-3"></div>
+            <div class="line-4"></div>
+          </div>
+        </article>
+
+        <article class="loader">
+          <div class="news-card">
+            <div class="img__box">
+              <span class="img__load"></span>
+            </div>
+            <div class="wrapper">
+              <h2 class="line-1"></h2>
+              <div class="line-2"></div>
+              <div class="line-3"></div>
+              <div class="line-3"></div>
+            </div>
+          </div>
+        </article> -->
+
         <!-- <article>
           <div class="news-card" onclick="displayNewsDetail()">
             <div class="img__box">
@@ -75,6 +101,30 @@
           </div>
         </article> -->
       </div>
+
+      <nav aria-label="Pagination" class="pagination">
+        <button type="button" class="pagination-button">
+          <span class="sr-only">Previous</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true" class="pagination-icon">
+            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <button type="button" aria-current="page" class="pagination-button current">
+          1
+        </button>
+        <button type="button" class="pagination-button">2</button>
+        <button type="button" class="pagination-button">3</button>
+        <button type="button" class="pagination-button">...</button>
+        <button type="button" class="pagination-button">7</button>
+        <button type="button" class="pagination-button">8</button>
+        <button type="button" class="pagination-button">9</button>
+        <button type="button" class="pagination-button">
+          <span class="sr-only">Next</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true" class="pagination-icon">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </nav>
     </main>
   <script src="/KCCD.3464ddca.js"></script></body>
 </html>
