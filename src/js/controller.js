@@ -1,6 +1,7 @@
 // const key = "c15907f1ba854f0bbf648b24dd617f4a";
 const key = "0f37eea3915e43e0b7c838c52337ff99";
 const api_URL = "https://newsapi.org/v2/";
+const country = "us";
 
 const newsContainer = document.getElementById("newsContainer");
 const searchInput = document.querySelector(".search-bar");
@@ -12,7 +13,9 @@ const resultsPerPage = 10;
 
 const showNews = async function () {
   try {
-    const res = await fetch(`${api_URL}top-headlines?country=us&apiKey=${key}`);
+    const res = await fetch(
+      `${api_URL}top-headlines?country=${country}&apiKey=${key}`
+    );
     const data = await res.json();
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
 
@@ -39,7 +42,7 @@ const searchNews = async function (query) {
     articles = data.articles.filter(
       (article) =>
         article.title !== "[Removed]" &&
-        article.content !== null &&
+        article.content !== "null" &&
         article.description !== null &&
         article.urlToImage !== null &&
         article.urlToImage !== ""
@@ -61,7 +64,7 @@ searchInput.addEventListener("keydown", function (event) {
 const displayNews = function (articles, page) {
   const start = (page - 1) * resultsPerPage;
   const end = page * resultsPerPage;
-  newsContainer.innerHTML = "";
+  //   newsContainer.innerHTML = "";
 
   articles.slice(start, end).forEach((article) => {
     const markup = `
@@ -85,12 +88,14 @@ const displayNews = function (articles, page) {
     `;
     newsContainer.insertAdjacentHTML("afterbegin", markup);
   });
+  // Scroll to the top of the page
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
 const filterNews = async function (category) {
   try {
     const res = await fetch(
-      `${api_URL}top-headlines?country=us&category=${category}&apiKey=${key}`
+      `${api_URL}top-headlines?country=${country}&category=${category}&apiKey=${key}`
     );
     const data = await res.json();
 
@@ -165,4 +170,68 @@ const createPaginationButtons = function () {
   }
 };
 
-showNews();
+// showNews();
+
+const fetchData = async function () {
+  try {
+    const res = await fetch(
+      "https://newsdata.io/api/1/news?apikey=pub_33203cb08a06e22951476db6f94b934a0bcc2"
+    );
+    if (!res.ok) {
+      if (res.status === 429) {
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        return fetchData();
+      } else {
+        throw new Error(`${res.statusText} (${res.status})`);
+      }
+    }
+    const data = await res.json();
+
+    if (data.results && data.results.length > 0) {
+      articles = data.results.filter(
+        (article) => article.content !== "null"
+      );
+      articles = data.results;
+      openNews(articles, currentPage);
+      createPaginationButtons();
+    }
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const openNews = function (articles, page) {
+  const start = (page - 1) * resultsPerPage;
+  const end = page * resultsPerPage;
+  //   newsContainer.innerHTML = "";
+
+  articles.slice(start, end).forEach((article) => {
+    const markup = `
+      <article>
+        <a href="${article.link}" class="news-card">
+          <div class="img__box">
+            <img
+              class="news-image"
+              src="${article.image_url}"
+              alt="${article.title}"
+              title="${article.title}"
+            />
+          </div>
+          <div class="news-details">
+            <h2 class="news-title">${article.title}</h2>
+            <div class="news-description">${article.description}</div>
+            <div class="news-date">${new Date(
+              article.pubDate
+            ).toLocaleString()}</div>
+          </div>
+        </a>
+      </article>
+    `;
+    newsContainer.insertAdjacentHTML("afterbegin", markup);
+  });
+  // Scroll to the top of the page
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+fetchData();

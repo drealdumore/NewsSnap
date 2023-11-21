@@ -1,6 +1,7 @@
 // const key = "c15907f1ba854f0bbf648b24dd617f4a";
 const key = "0f37eea3915e43e0b7c838c52337ff99";
 const api_URL = "https://newsapi.org/v2/";
+const country = "us";
 const newsContainer = document.getElementById("newsContainer");
 const searchInput = document.querySelector(".search-bar");
 const paginationContainer = document.querySelector(".pagination");
@@ -9,7 +10,7 @@ let currentPage = 1;
 const resultsPerPage = 10;
 const showNews = async function() {
     try {
-        const res = await fetch(`${api_URL}top-headlines?country=us&apiKey=${key}`);
+        const res = await fetch(`${api_URL}top-headlines?country=${country}&apiKey=${key}`);
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
         if (data.articles && data.articles.length > 0) {
@@ -26,7 +27,7 @@ const searchNews = async function(query) {
         const res = await fetch(`${api_URL}everything?q=${query}&apiKey=${key}`);
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        articles = data.articles.filter((article)=>article.title !== "[Removed]" && article.content !== null && article.description !== null && article.urlToImage !== null && article.urlToImage !== "");
+        articles = data.articles.filter((article)=>article.title !== "[Removed]" && article.content !== "null" && article.description !== null && article.urlToImage !== null && article.urlToImage !== "");
         displayNews(articles, currentPage);
         createPaginationButtons();
     } catch (err) {
@@ -42,7 +43,7 @@ searchInput.addEventListener("keydown", function(event) {
 const displayNews = function(articles, page) {
     const start = (page - 1) * resultsPerPage;
     const end = page * resultsPerPage;
-    newsContainer.innerHTML = "";
+    //   newsContainer.innerHTML = "";
     articles.slice(start, end).forEach((article)=>{
         const markup = `
       <article>
@@ -65,10 +66,15 @@ const displayNews = function(articles, page) {
     `;
         newsContainer.insertAdjacentHTML("afterbegin", markup);
     });
+    // Scroll to the top of the page
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 };
 const filterNews = async function(category) {
     try {
-        const res = await fetch(`${api_URL}top-headlines?country=us&category=${category}&apiKey=${key}`);
+        const res = await fetch(`${api_URL}top-headlines?country=${country}&category=${category}&apiKey=${key}`);
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
         articles = data.articles.filter((article)=>article.title !== "[Removed]" && article.content !== null && article.description !== null && article.urlToImage !== null && article.urlToImage !== "");

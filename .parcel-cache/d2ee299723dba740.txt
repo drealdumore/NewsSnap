@@ -1,4 +1,4 @@
-5865
+5866
 82C:\Users\USER\Desktop\KCCD\node_modules\caniuse-lite\data\features\console-time.js133438448226749971 0
 79C:\Users\USER\Desktop\KCCD\node_modules\csso\node_modules\mdn-data\package.json133438448095846149 0
 39C:\Users\USER\Desktop\KCCD\package.json133439419353466728 0
@@ -29,7 +29,7 @@
 46C:\Users\USER\Desktop\KCCD\node_modules\srcset133438448023697423 1
 37C:\Users\USER\Desktop\KCCD\.gitignore133439556262018531 0
 89C:\Users\USER\Desktop\KCCD\node_modules\dom-serializer\node_modules\entities\lib\index.js133438448007792555 0
-31C:\Users\USER\Desktop\KCCD\dist133439777192410760 1
+31C:\Users\USER\Desktop\KCCD\dist133439890951328683 1
 84C:\Users\USER\Desktop\KCCD\node_modules\@swc\helpers\_\_sliced_to_array\package.json133438448357993266 0
 75C:\Users\USER\Desktop\KCCD\node_modules\svgo\plugins\convertStyleToAttrs.js133438448103422140 0
 45C:\Users\USER\Desktop\KCCD\node_modules\clone133438448012071044 1
@@ -45,7 +45,7 @@
 63C:\Users\USER\Desktop\KCCD\node_modules\@trysound\sax\README.md133438448003867401 0
 77C:\Users\USER\Desktop\KCCD\node_modules\@parcel\package-manager\test\fixtures133438448154108331 1
 59C:\Users\USER\Desktop\KCCD\node_modules\term-size\readme.md133438448063616973 0
-37C:\Users\USER\Desktop\KCCD\index.html133439771513275857 0
+37C:\Users\USER\Desktop\KCCD\index.html133439873100004654 0
 58C:\Users\USER\Desktop\KCCD\node_modules\mdn-data\README.md133438448126757914 0
 89C:\Users\USER\Desktop\KCCD\node_modules\caniuse-lite\data\features\http-live-streaming.js133438448375156856 0
 105C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\create.js133438448103372234 0
@@ -98,15 +98,15 @@
 100C:\Users\USER\Desktop\KCCD\node_modules\@parcel\core\test\fixtures\local-plugin-config-pkg\.parcelrc133438448074547250 0
 36C:\Users\USER\Desktop\KCCD\README.md133439557949842947 0
 60C:\Users\USER\Desktop\KCCD\node_modules\electron-to-chromium133438448075803215 1
-48C:\Users\USER\Desktop\KCCD\dist\KCCD.3464ddca.js133439776986908468 0
+48C:\Users\USER\Desktop\KCCD\dist\KCCD.3464ddca.js133439890950672025 0
 66C:\Users\USER\Desktop\KCCD\node_modules\@parcel\utils\src\index.js133438448176194915 0
 113C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\replace\AttributeSelector.js133438448066080678 0
 75C:\Users\USER\Desktop\KCCD\node_modules\mdn-data\css\properties.schema.json133438448103672142 0
 82C:\Users\USER\Desktop\KCCD\node_modules\caniuse-lite\data\features\cryptography.js133438448234264902 0
 65C:\Users\USER\Desktop\KCCD\node_modules\semver\functions\parse.js133438448108101884 0
-44C:\Users\USER\Desktop\KCCD\src\css\style.css133439771745233837 0
+44C:\Users\USER\Desktop\KCCD\src\css\style.css133439890944733471 0
 74C:\Users\USER\Desktop\KCCD\node_modules\htmlnano\lib\modules\minifySvg.mjs133438448223546376 0
-34C:\Users\USER\Desktop\KCCD\src\css133439760878424833 1
+34C:\Users\USER\Desktop\KCCD\src\css133439780073683214 1
 59C:\Users\USER\Desktop\KCCD\node_modules\lmdb\dict\dict2.txt133438448282557089 0
 83C:\Users\USER\Desktop\KCCD\node_modules\caniuse-lite\data\features\readonly-attr.js133438448418511011 0
 110C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-svgo\node_modules\svgo\plugins\removeStyleElement.js133438448170899337 0
@@ -117,8 +117,11 @@
 33C:\Users\USER\Desktop\KCCD\src\js133439416832931217 1
 47C:\Users\USER\Desktop\KCCD\node_modules\yallist133438447999722898 1
 113C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\scope\selector.js133438448225165908 0
-47C:\Users\USER\Desktop\KCCD\src\js\controller.js133439777191260983 0
+47C:\Users\USER\Desktop\KCCD\src\js\controller.js133439889744710814 0
 69C:\Users\USER\Desktop\KCCD\node_modules\@swc\helpers\cjs\_extends.cjs133438448161254059 0
+79C:\Users\USER\Desktop\KCCD\node_modules\csso\node_modules\css-tree\lib\index.js133438448310163026 0
+44C:\Users\USER\Desktop\KCCD\src\css\unused.js133439780136206567 0
+69C:\Users\USER\Desktop\KCCD\node_modules\escape-string-regexp\index.js133438447974071024 0
 43C:\Users\USER\Desktop\KCCD\src\css\left.svg133439759597331519 0
 70C:\Users\USER\Desktop\KCCD\node_modules\csso\lib\clean\TypeSelector.js133438448217802653 0
 57C:\Users\USER\Desktop\KCCD\node_modules\stable\index.d.ts133438447973871082 0
@@ -968,8 +971,6 @@
 84C:\Users\USER\Desktop\KCCD\node_modules\entities\lib\generated\decode-data-html.d.ts133438448105851826 0
 56C:\Users\USER\Desktop\KCCD\node_modules\dotenv\config.js133438448004367391 0
 78C:\Users\USER\Desktop\KCCD\node_modules\term-size\vendor\windows\term-size.exe133438448042454217 0
-90C:\Users\USER\Desktop\KCCD\node_modules\css-tree\cjs\syntax\node\PseudoElementSelector.cjs133438448224760793 0
-85C:\Users\USER\Desktop\KCCD\node_modules\@swc\helpers\src\_tagged_template_literal.mjs133438448382962163 0
 87C:\Users\USER\Desktop\KCCD\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\midl.h133438448248906343 0
 72C:\Users\USER\Desktop\KCCD\node_modules\.bin\download-lmdb-prebuilds.ps1133438448486859569 0
 92C:\Users\USER\Desktop\KCCD\node_modules\@swc\helpers\_\_class_private_field_set\package.json133438448326027596 0
@@ -1186,7 +1187,7 @@
 85C:\Users\USER\Desktop\KCCD\node_modules\lmdb\node_modules\node-addon-api\package.json133438448099853038 0
 112C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-svgo\node_modules\svgo\plugins\removeOffCanvasPaths.js133438448169694374 0
 90C:\Users\USER\Desktop\KCCD\node_modules\htmlnano\lib\modules\removeRedundantAttributes.mjs133438448225377150 0
-54C:\Users\USER\Desktop\KCCD\dist\index.1f8823c9.css.map133439776987158478 0
+54C:\Users\USER\Desktop\KCCD\dist\index.1f8823c9.css.map133439890951176782 0
 92C:\Users\USER\Desktop\KCCD\node_modules\react-refresh\cjs\react-refresh-babel.development.js133438448008947545 0
 83C:\Users\USER\Desktop\KCCD\node_modules\caniuse-lite\data\features\css-selection.js133438448324268612 0
 65C:\Users\USER\Desktop\KCCD\node_modules\@parcel\markdown-ansi\lib133438447996086348 1
@@ -2477,8 +2478,6 @@
 82C:\Users\USER\Desktop\KCCD\node_modules\@swc\helpers\src\_wrap_async_generator.mjs133438448387659083 0
 80C:\Users\USER\Desktop\KCCD\node_modules\caniuse-lite\data\features\pdf-viewer.js133438448414746492 0
 60C:\Users\USER\Desktop\KCCD\node_modules\fill-range\README.md133438447995586267 0
-79C:\Users\USER\Desktop\KCCD\node_modules\csso\node_modules\css-tree\lib\index.js133438448310163026 0
-69C:\Users\USER\Desktop\KCCD\node_modules\escape-string-regexp\index.js133438447974071024 0
 90C:\Users\USER\Desktop\KCCD\node_modules\csso\node_modules\css-tree\cjs\lexer\structure.cjs133438448225115900 0
 73C:\Users\USER\Desktop\KCCD\node_modules\escape-string-regexp\package.json133438447963340042 0
 76C:\Users\USER\Desktop\KCCD\node_modules\css-tree\cjs\lexer\generic-const.cjs133438448169673081 0
@@ -3333,6 +3332,8 @@
 75C:\Users\USER\Desktop\KCCD\node_modules\css-tree\cjs\syntax\node\Number.cjs133438448219778844 0
 77C:\Users\USER\Desktop\KCCD\node_modules\css-tree\cjs\syntax\node\Operator.cjs133438448220833900 0
 80C:\Users\USER\Desktop\KCCD\node_modules\css-tree\cjs\syntax\node\Parentheses.cjs133438448221933679 0
+90C:\Users\USER\Desktop\KCCD\node_modules\css-tree\cjs\syntax\node\PseudoElementSelector.cjs133438448224760793 0
+85C:\Users\USER\Desktop\KCCD\node_modules\@swc\helpers\src\_tagged_template_literal.mjs133438448382962163 0
 68C:\Users\USER\Desktop\KCCD\node_modules\@swc\helpers\_\_to_primitive133438448359258735 1
 73C:\Users\USER\Desktop\KCCD\node_modules\css-tree\cjs\syntax\node\Rule.cjs133438448225479130 0
 105C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-svgo\node_modules\svgo\plugins\removeViewBox.js133438448178572211 0
@@ -5399,7 +5400,7 @@
 92C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-htmlnano\node_modules\mdn-data\api133438448069961973 1
 93C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-htmlnano\node_modules\mdn-data\l10n133438448035948757 1
 96C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-htmlnano\node_modules\mdn-data\LICENSE133438447966971029 0
-53C:\Users\USER\Desktop\KCCD\dist\index.62406edb.js.map133439777192360759 0
+53C:\Users\USER\Desktop\KCCD\dist\index.62406edb.js.map133439890951176782 0
 101C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-htmlnano\node_modules\mdn-data\package.json133438448073843623 0
 102C:\Users\USER\Desktop\KCCD\node_modules\@parcel\optimizer-htmlnano\node_modules\mdn-data\l10n\css.json133438448049508130 0
 62C:\Users\USER\Desktop\KCCD\node_modules\@lezer\lr\package.json133438448072175707 0
@@ -5856,11 +5857,11 @@
 55C:\Users\USER\Desktop\KCCD\node_modules\.bin\semver.cmd133438448486959623 0
 53C:\Users\USER\Desktop\KCCD\node_modules\.bin\svgo.ps1133438448486959623 0
 67C:\Users\USER\Desktop\KCCD\node_modules\.bin\update-browserslist-db133438448486959623 0
-50C:\Users\USER\Desktop\KCCD\dist\index.1f8823c9.css133439776986858479 0
-49C:\Users\USER\Desktop\KCCD\dist\index.62406edb.js133439777192310715 0
-50C:\Users\USER\Desktop\KCCD\dist\index.c92073ef.css133439773671678356 0
+50C:\Users\USER\Desktop\KCCD\dist\index.1f8823c9.css133439890950621979 0
+49C:\Users\USER\Desktop\KCCD\dist\index.62406edb.js133439890950621979 0
+50C:\Users\USER\Desktop\KCCD\dist\index.c92073ef.css133439890950621979 0
 57C:\Users\USER\Desktop\KCCD\dist\index.c92073ef.css.5564.x133439603314965231 0
-54C:\Users\USER\Desktop\KCCD\dist\index.c92073ef.css.map133439776987208452 0
-42C:\Users\USER\Desktop\KCCD\dist\index.html133439773671678356 0
+54C:\Users\USER\Desktop\KCCD\dist\index.c92073ef.css.map133439890951176782 0
+42C:\Users\USER\Desktop\KCCD\dist\index.html133439890950621979 0
 55C:\Users\USER\Desktop\KCCD\dist\KCCD.3464ddca.js.5564.v133439603314820298 0
-52C:\Users\USER\Desktop\KCCD\dist\KCCD.3464ddca.js.map133439776987158478 0
+52C:\Users\USER\Desktop\KCCD\dist\KCCD.3464ddca.js.map133439890951176782 0
