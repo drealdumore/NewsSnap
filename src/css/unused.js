@@ -1,78 +1,38 @@
-const key = "c15907f1ba854f0bbf648b24dd617f4a";
+// const key = "c15907f1ba854f0bbf648b24dd617f4a";
+const key = "0f37eea3915e43e0b7c838c52337ff99";
 const api_URL = "https://newsapi.org/v2/";
+const us = "us";
+const ng = "ng";
 
-const newsDetail = document.getElementById("newsDetail");
 const newsContainer = document.getElementById("newsContainer");
-const noResponse = document.querySelector(".no__response");
 const searchInput = document.querySelector(".search-bar");
+const paginationContainer = document.querySelector(".pagination");
+const overlay = document.querySelector(".overlay");
 
 let articles = [];
+let currentPage = 1;
+const resultsPerPage = 10;
 
-// Display headlines in us
 const showNews = async function () {
-  // 1. Loading articles
   try {
-    const res = await fetch(`${api_URL}top-headlines?country=us&apiKey=${key}`);
+    const res = await fetch(
+      `${api_URL}top-headlines?country=${country}&apiKey=${key}`
+    );
     const data = await res.json();
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
 
-    // To check if articles exist in the response
     if (data.articles && data.articles.length > 0) {
-      articles = data.articles;
-
-      // To filter out articles that have been removed
-      articles = articles.filter((article) => article.title !== "[Removed]");
-
-      // to log to the console. i used map so that i can edit it.
-      //   const article = articles.map((article, index) => {
-      //     return {
-      //       index: index + 1, // Add 1 to the index
-      //       source: article.source.name,
-      //       author: article.author,
-      //       title: article.title,
-      //       description: article.description,
-      //       url: article.url,
-      //       img: article.urlToImage,
-      //       publishedAt: article.publishedAt,
-      //       content: article.content,
-      //     };
-      //   });
-      //   console.log(article);
-
-      // Iterate through the articles array and create a new array of objects (article)
-      articles.forEach((article) => {
-        const markup = `
-            <article>
-            <a href="${article.url}" class="news-card">
-            <div class="img__box">
-                <img
-                class="news-image"
-                src="${article.urlToImage}"
-                alt="${article.title}"
-                title="${article.title}"
-                />
-                </div>
-                <div class="news-details">
-                <h2 class="news-title">${article.title}</h2>
-                <div class="news-description">${article.content}</div>
-                <div class="news-date">${article.publishedAt}</div>
-                </div>
-            </a>
-            </article>
-        `;
-        newsContainer.insertAdjacentHTML("afterbegin", markup);
-      });
-    } else {
-      noResponse.style.display = "block";
+      articles = data.articles.filter(
+        (article) => article.title !== "[Removed]"
+      );
+      displayNews(articles, currentPage);
+      createPaginationButtons();
     }
-
-    // 2. rendering articles
   } catch (err) {
     alert(err);
   }
 };
 
-// search news
 const searchNews = async function (query) {
   try {
     const res = await fetch(`${api_URL}everything?q=${query}&apiKey=${key}`);
@@ -81,27 +41,21 @@ const searchNews = async function (query) {
     if (!res.ok) {
       throw new Error(`${data.message} (${res.status})`);
     }
-    articles = data.articles;
-
-    // To filter out articles that have been removed and have null content
-    // articles = articles.filter((article) => article.title !== "[Removed]");
-    articles = articles.filter(
+    articles = data.articles.filter(
       (article) =>
         article.title !== "[Removed]" &&
-        article.content !== null &&
+        article.content !== "null" &&
         article.description !== null &&
         article.urlToImage !== null &&
         article.urlToImage !== ""
     );
-    console.log(articles);
-    displayNews(articles);
+    displayNews(articles, currentPage);
+    createPaginationButtons();
   } catch (err) {
     console.error(err);
   }
 };
 
-// Add event listener to the search input,
-// so that as user press enter, it is searching for input
 searchInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     const query = event.target.value;
@@ -109,55 +63,48 @@ searchInput.addEventListener("keydown", function (event) {
   }
 });
 
-// // Display search news results
-// const displayNews = function (articles) {
-//   // Clear existing news
-//   document.getElementById("newsContainer").innerHTML = "";
-//   //   searchInput.value = "";
+const displayNews = function (articles, page) {
+  const start = (page - 1) * resultsPerPage;
+  const end = page * resultsPerPage;
+  //   newsContainer.innerHTML = "";
 
-//   // Display new news
-//   articles.forEach((article) => {
-//     const markup = `
-//         <article>
-//             <a href="${article.url}" class="news-card">
-//                 <div class="img__box">
-//                     <img
-//                     class="news-image"
-//                     src="${article.urlToImage}"
-//                     alt="${article.title}"
-//                     title="${article.title}"
-//                     />
-//                     </div>
-//                     <div class="news-details">
-//                     <h2 class="news-title">${article.title}</h2>
-//                     <div class="news-description">${article.content}</div>
-//                     <div class="news-date">${article.publishedAt}</div>
-//                 </div>
-//             </a>
-//         </article>
-//   `;
-//     newsContainer.insertAdjacentHTML("afterbegin", markup);
-//   });
-// };
+  articles.slice(start, end).forEach((article) => {
+    const markup = `
+      <article>
+        <a href="${article.url}" class="news-card">
+          <div class="img__box">
+            <img
+              class="news-image"
+              src="${article.urlToImage}"
+              alt="${article.title}"
+              title="${article.title}"
+            />
+          </div>
+          <div class="news-details">
+            <h2 class="news-title">${article.title}</h2>
+            <div class="news-description">${article.content}</div>
+            <div class="news-date">${article.publishedAt}</div>
+          </div>
+        </a>
+      </article>
+    `;
+    newsContainer.insertAdjacentHTML("afterbegin", markup);
+  });
+  // Scroll to the top of the page
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
-// Filter news based on category
 const filterNews = async function (category) {
   try {
     const res = await fetch(
-      `${api_URL}top-headlines?country=us&category=business&apiKey=${key}`
+      `${api_URL}top-headlines?country=${country}&category=${category}&apiKey=${key}`
     );
     const data = await res.json();
-    console.log(data);
 
     if (!res.ok) {
       throw new Error(`${data.message} (${res.status})`);
     }
-    let articles = data.articles;
-
-    console.log(articles);
-
-    // To filter out articles that have been removed and have null content
-    articles = articles.filter(
+    articles = data.results.filter(
       (article) =>
         article.title !== "[Removed]" &&
         article.content !== null &&
@@ -165,94 +112,64 @@ const filterNews = async function (category) {
         article.urlToImage !== null &&
         article.urlToImage !== ""
     );
-    displayCategory(articles, category);
+    openNews(articles, category);
+    createPaginationButtons();
   } catch (err) {
     console.error(err);
   }
 };
 
-// display filtered news
 const displayCategory = function (articles, category) {
-  // Clear existing news
-  document.getElementById("newsContainer").innerHTML = "";
+  newsContainer.innerHTML = "";
   searchInput.value = "";
 
-  // Display new news
   articles.forEach((article) => {
     const markup = `
         <article>
-            <a href="${article.url}" class="news-card">
-                <div class="img__box">
-                    <img
-                    class="news-image"
-                    src="${article.urlToImage}"
-                    alt="${article.title}"
-                    title="${article.title}"
-                    />
-                </div>
-                <div class="news-details">
-                    <div class="news-category">${category}</div>
-                    <h2 class="news-title">${article.title}</h2>
-                    <div class="news-description">${article.content}</div>
-                    <div class="news-date">${article.publishedAt}</div>
-                </div>
-            </a>
+          <a href="${article.url}" class="news-card">
+            <div class="img__box">
+              <img
+                class="news-image"
+                src="${article.urlToImage}"
+                alt="${article.title}"
+                title="${article.title}"
+              />
+            </div>
+            <div class="news-details">
+              <div class="news-category">${category}</div>
+              <h2 class="news-title">${article.title}</h2>
+              <div class="news-description">${article.content}</div>
+              <div class="news-date">${article.publishedAt}</div>
+            </div>
+          </a>
         </article>
-    `;
+      `;
     newsContainer.insertAdjacentHTML("afterbegin", markup);
   });
+};
+
+const createPaginationButtons = function () {
+  const pages = Math.ceil(articles.length / resultsPerPage);
+  paginationContainer.innerHTML = "";
+
+  for (let i = 1; i <= pages; i++) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.classList.add("pagination-button");
+    button.textContent = i;
+
+    if (i === currentPage) {
+      button.classList.add("current");
+    }
+
+    button.addEventListener("click", function () {
+      currentPage = i;
+      displayNews(articles, currentPage);
+      createPaginationButtons();
+    });
+
+    paginationContainer.appendChild(button);
+  }
 };
 
 showNews();
-
-// const createButton = (page, type) => `
-// <button class="btn-inline results__btn--${type}">
-
-// <img class="page__icon" src="src/css/ ${type === "prev" ? prev : "right"}.svg">
-// <span>Page ${type === "prev" ? page - 1 : page + 1}</span>
-// </button>`;
-
-// const renderButtons = (page, numResults, resPerPage) => {
-//   const pages = Math.ceil(numResults / resPerPage);
-
-//   if (page === 1 && pages > 1) {
-//     // only button to go to next page
-//   } else if (page < pages) {
-//     // both  buttons
-//   } else if (page === pages && pages > 1) {
-//     // only button to go to next page
-//   }
-// };
-
-// Display search news results
-const displayNews = function (articles, page = 1, resPerPage = 10) {
-  const start = (page - 1) * resPerPage; //0;
-  const end = page * resPerPage; //9;
-  // Clear existing news
-  document.getElementById("newsContainer").innerHTML = "";
-  //   searchInput.value = "";
-
-  // Display new news
-  articles.slice(start, end).forEach((article) => {
-    const markup = `
-          <article>
-              <a href="${article.url}" class="news-card">
-                  <div class="img__box">
-                      <img
-                      class="news-image"
-                      src="${article.urlToImage}"
-                      alt="${article.title}"
-                      title="${article.title}"
-                      />
-                      </div>
-                      <div class="news-details">
-                      <h2 class="news-title">${article.title}</h2>
-                      <div class="news-description">${article.content}</div>
-                      <div class="news-date">${article.publishedAt}</div>
-                  </div>
-              </a>
-          </article>
-    `;
-    newsContainer.insertAdjacentHTML("afterbegin", markup);
-  });
-};

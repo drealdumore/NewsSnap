@@ -10,39 +10,8 @@
   </head>
 
   <body>
-    <svg
-      class="top__svg"
-      width="29"
-      height="29"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 5L14 5"
-        stroke="#fff"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M4 12L20 12"
-        stroke="#fff"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M4 19L20 19"
-        stroke="#fff"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-
     <main class="container">
-      <h1>NewsSnap</h1>
+      <h1 style="margin-bottom: 1rem">NewsSnap</h1>
 
       <div class="category-filter">
         <div class="grid">
@@ -52,15 +21,13 @@
           <button class="category-button" onclick="filterNews('entertainment')">
             Entertainment
           </button>
-          <button class="category-button" onclick="filterNews('general')">
-            General
+          <button class="category-button" onclick="filterNews('world')">
+            World
           </button>
           <button class="category-button" onclick="filterNews('health')">
             Health
           </button>
-          <button class="category-button" onclick="filterNews('science')">
-            Science
-          </button>
+          
           <button class="category-button" onclick="filterNews('sports')">
             Sports
           </button>
@@ -120,6 +87,8 @@
       </div>
 
       <nav aria-label="Pagination" class="pagination"></nav>
+
+      <div class="overlay"></div>
     </main>
   </body>
 </html>
