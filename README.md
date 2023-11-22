@@ -2,7 +2,7 @@
 
 ## Overview
 
-The NewsSnap App is a simple web application built with HTML, PicoCSS, and JavaScript. It leverages the News API to fetch and display news headlines. Users can click on a particular news card to navigate to the main news source for detailed information.
+The NewsSnap App is a simple web application built with HTML, PicoCSS, and JavaScript. It leverages the newsdata.io API to fetch and display news headlines. Users can click on a particular news card to get full content of the news and click on main source in the news detail popup to navigate to the main news source for detailed information.
 
 ## Features
 
@@ -15,4 +15,3 @@ The NewsSnap App is a simple web application built with HTML, PicoCSS, and JavaS
 - HTML: Markup language for the structure of the web page.
 - PicoCSS: Lightweight CSS library for styling.
 - JavaScript: Used for fetching data from the News API and handling user interactions.
-

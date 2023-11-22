@@ -287,7 +287,7 @@ article:hover {
 
 .popup {
   border-radius: 10px;
-  width: 95%;
+  width: 97%;
   height: 55%;
   transition: all 0.4s;
   display: block;
@@ -313,11 +313,20 @@ article:hover {
   padding: 3px;
   background: #24333e;
   border-radius: 6px;
-  top: 6%;
+  top: 10%;
   font-size: 15px;
   left: 7%;
   color: white;
   text-transform: capitalize;
+}
+.country {
+  background: white;
+  border-radius: 6px;
+  font-size: 15px;
+  text-transform: capitalize;
+  width: max-content;
+  padding: 0 8px;
+  color: #24333e;
 }
 
 .close {
@@ -329,6 +338,10 @@ article:hover {
   right: 3%;
   color: white;
   cursor: pointer;
+  transition: all .4s ease;
+}
+.close:hover{
+  color: #24333e;
 }
 
 .detail__img {
@@ -447,4 +460,10 @@ article:hover {
   .grid {
     justify-content: center;
   }
+}
+
+.news-link {
+  color: white;
+  text-transform: capitalize;
+  text-decoration: underline;
 }

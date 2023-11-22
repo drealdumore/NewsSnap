@@ -5,15 +5,17 @@ const overlay = document.querySelector(".overlay");
 const no__response = document.querySelector(".no__response");
 
 let articles = [];
-// const api_Key = 'pub_33203cb08a06e22951476db6f94b934a0bcc2'
+// const api_Key = "pub_33203cb08a06e22951476db6f94b934a0bcc2";
 const api_Key = "pub_33297e3fd461b5dbf32af13a54c4fd3f2c6b4";
 
-const showNews = async function (country) {
+// const showNews = async function (country) {
+const showNews = async function () {
   searchInput.value = "";
 
   try {
     const res = await fetch(
-      `https://newsdata.io/api/1/news?apikey=${api_Key}&country=${country}`
+      // `https://newsdata.io/api/1/news?apikey=${api_Key}&country=${country}`
+      `https://newsdata.io/api/1/news?apikey=${api_Key}`
     );
     if (!res.ok) {
       if (res.status === 429) {
@@ -42,23 +44,15 @@ const showNews = async function (country) {
     }
   } catch (error) {
     console.error(error);
+    no__response.style.display = "flex";
   }
 };
 
 const displayNews = function (articles) {
-  if (articles.length === 0) {
-    no__response.style.display = "flex";
-  }
-
   articles.forEach((article) => {
-    const top = "top";
-    if (article.category === top) {
-      article.category = "Top News";
-    }
-
     const markup = `
       <article class="news-article" data-title="${article.title}">
-        <a class="news-card" target="_blank">
+        <a class="news-card">
           <div class="img__box">
             <img
               class="news-image"
@@ -68,6 +62,8 @@ const displayNews = function (articles) {
             />
           </div>
           <div class="news-details">
+        <span class="country">${article.country}</span>
+
             <h2 class="news-title">${article.title}</h2>
             <div class="news-description">${article.description}</div>
             <div class="news-date">${new Date(
@@ -118,6 +114,9 @@ const displayPopup = function (article) {
         <p>
         ${article.content}
         </p>
+        <a href="${
+          article.link
+        }"  target="_blank" class="news-link">main source</a>
       </div>
     </div>
     `;
@@ -163,6 +162,13 @@ const searchNews = async function (query) {
   }
 };
 
+// searchInput.addEventListener("input", function (event) {
+//   const query = event.target.value;
+//   setTimeout(() => {
+//     searchNews(query);
+//   }, 500);
+// });
+
 searchInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     const query = event.target.value;
@@ -193,7 +199,7 @@ const filterNews = async function (category) {
         article.pubDate !== undefined &&
         article.image_url !== ""
     );
-    displayNews(articles);
+
     displayCategory(articles, category);
   } catch (err) {
     console.error(err);
@@ -206,12 +212,12 @@ const displayCategory = function (articles, category) {
 
   articles.forEach((article) => {
     const markup = `
-        <article>
-          <a href="${article.url}" class="news-card">
+        <article  class="news-article">
+          <a href="${article.link}" class="news-card" target="_blank">
             <div class="img__box">
               <img
                 class="news-image"
-                src="${article.urlToImage}"
+                src="${article.image_url}"
                 alt="${article.title}"
                 title="${article.title}"
               />
@@ -219,14 +225,17 @@ const displayCategory = function (articles, category) {
             <div class="news-details">
               <div class="news-category">${category}</div>
               <h2 class="news-title">${article.title}</h2>
-              <div class="news-description">${article.content}</div>
-              <div class="news-date">${article.publishedAt}</div>
+              <div class="news-description">${article.description}</div>
+              <div class="news-date">${article.pubDate}</div>
             </div>
           </a>
         </article>
       `;
     newsContainer.insertAdjacentHTML("afterbegin", markup);
   });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-showNews('us');
+// showNews('us');
+showNews();

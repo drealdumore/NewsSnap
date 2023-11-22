@@ -15,6 +15,9 @@
 
       <div class="category-filter">
         <div class="grid">
+          <button class="category-button" onclick="filterNews('top')">
+            Top News
+          </button>
           <button class="category-button" onclick="filterNews('business')">
             Business
           </button>
@@ -27,7 +30,7 @@
           <button class="category-button" onclick="filterNews('health')">
             Health
           </button>
-          
+
           <button class="category-button" onclick="filterNews('sports')">
             Sports
           </button>
@@ -60,6 +63,7 @@
           <h2>No articles found in the response.</h2>
         </div>
       </div>
+
       <div id="newsContainer">
         <!-- <article class="loader">
           <div class="wrapper">
