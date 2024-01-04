@@ -338,9 +338,9 @@ article:hover {
   right: 3%;
   color: white;
   cursor: pointer;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
-.close:hover{
+.close:hover {
   color: #24333e;
 }
 
@@ -467,3 +467,41 @@ article:hover {
   text-transform: capitalize;
   text-decoration: underline;
 }
+.animate {
+  background: linear-gradient(
+    90deg,
+    #ffcb52,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #c165dd,
+    #1de5e2,
+    #5581f1
+  );
+  background-size: 300% 100%;
+  filter: blur(0px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: bg 10s ease infinite;
+}
+
+@keyframes bg {
+  0% {
+    background-position: 0% 100%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+

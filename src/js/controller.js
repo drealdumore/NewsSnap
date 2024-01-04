@@ -5,8 +5,8 @@ const overlay = document.querySelector(".overlay");
 const no__response = document.querySelector(".no__response");
 
 let articles = [];
-// const api_Key = "pub_33203cb08a06e22951476db6f94b934a0bcc2";
-const api_Key = "pub_33297e3fd461b5dbf32af13a54c4fd3f2c6b4";
+const api_Key = "pub_33203cb08a06e22951476db6f94b934a0bcc2";
+// const api_Key = "pub_33297e3fd461b5dbf32af13a54c4fd3f2c6b4";
 
 // const showNews = async function (country) {
 const showNews = async function () {
@@ -44,7 +44,6 @@ const showNews = async function () {
     }
   } catch (error) {
     console.error(error);
-    no__response.style.display = "flex";
   }
 };
 
@@ -239,3 +238,5 @@ const displayCategory = function (articles, category) {
 
 // showNews('us');
 showNews();
+
+
