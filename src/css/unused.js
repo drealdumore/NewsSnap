@@ -1,3 +1,7 @@
+
+
+const country = 'us'
+
 // const key = "c15907f1ba854f0bbf648b24dd617f4a";
 const key = "0f37eea3915e43e0b7c838c52337ff99";
 const api_URL = "https://newsapi.org/v2/";
@@ -104,7 +108,7 @@ const filterNews = async function (category) {
     if (!res.ok) {
       throw new Error(`${data.message} (${res.status})`);
     }
-    articles = data.results.filter(
+    articles = data.articles.filter(
       (article) =>
         article.title !== "[Removed]" &&
         article.content !== null &&
@@ -112,12 +116,13 @@ const filterNews = async function (category) {
         article.urlToImage !== null &&
         article.urlToImage !== ""
     );
-    openNews(articles, category);
+    displayCategory(articles, category);
     createPaginationButtons();
   } catch (err) {
     console.error(err);
   }
 };
+
 
 const displayCategory = function (articles, category) {
   newsContainer.innerHTML = "";

@@ -238,5 +238,3 @@ const displayCategory = function (articles, category) {
 
 // showNews('us');
 showNews();
-
-

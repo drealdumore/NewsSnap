@@ -1,85 +1,137 @@
-// const key = "c15907f1ba854f0bbf648b24dd617f4a";
-const key = "0f37eea3915e43e0b7c838c52337ff99";
-const api_URL = "https://newsapi.org/v2/";
-const country = "us";
 const newsContainer = document.getElementById("newsContainer");
 const searchInput = document.querySelector(".search-bar");
 const paginationContainer = document.querySelector(".pagination");
+const overlay = document.querySelector(".overlay");
+const no__response = document.querySelector(".no__response");
 let articles = [];
-let currentPage = 1;
-const resultsPerPage = 10;
+const api_Key = "pub_33203cb08a06e22951476db6f94b934a0bcc2";
+// const api_Key = "pub_33297e3fd461b5dbf32af13a54c4fd3f2c6b4";
+// const showNews = async function (country) {
 const showNews = async function() {
+    searchInput.value = "";
     try {
-        const res = await fetch(`${api_URL}top-headlines?country=${country}&apiKey=${key}`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        if (data.articles && data.articles.length > 0) {
-            articles = data.articles.filter((article)=>article.title !== "[Removed]");
-            displayNews(articles, currentPage);
-            createPaginationButtons();
+        const res = await fetch(// `https://newsdata.io/api/1/news?apikey=${api_Key}&country=${country}`
+        `https://newsdata.io/api/1/news?apikey=${api_Key}`);
+        if (!res.ok) {
+            if (res.status === 429) {
+                await new Promise((resolve)=>setTimeout(resolve, 5000));
+                return showNews();
+            } else throw new Error(`${res.statusText} (${res.status})`);
         }
-    } catch (err) {
-        alert(err);
-    }
-};
-const searchNews = async function(query) {
-    try {
-        const res = await fetch(`${api_URL}everything?q=${query}&apiKey=${key}`);
         const data = await res.json();
-        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        articles = data.articles.filter((article)=>article.title !== "[Removed]" && article.content !== "null" && article.description !== null && article.urlToImage !== null && article.urlToImage !== "");
-        displayNews(articles, currentPage);
-        createPaginationButtons();
-    } catch (err) {
-        console.error(err);
+        if (data.results && data.results.length > 0) {
+            articles = data.results.filter((article)=>article.title !== "null" && article.language == "english" && article.content !== "null" && article.description !== null && article.image_url !== null && article.image_url !== undefined && article.pubDate !== undefined && article.image_url !== "");
+            displayNews(articles);
+        }
+    } catch (error) {
+        console.error(error);
     }
 };
-searchInput.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        const query = event.target.value;
-        searchNews(query);
-    }
-});
-const displayNews = function(articles, page) {
-    const start = (page - 1) * resultsPerPage;
-    const end = page * resultsPerPage;
-    //   newsContainer.innerHTML = "";
-    articles.slice(start, end).forEach((article)=>{
+const displayNews = function(articles) {
+    articles.forEach((article)=>{
         const markup = `
-      <article>
-        <a href="${article.url}" class="news-card">
+      <article class="news-article" data-title="${article.title}">
+        <a class="news-card">
           <div class="img__box">
             <img
               class="news-image"
-              src="${article.urlToImage}"
+              src="${article.image_url}"
               alt="${article.title}"
               title="${article.title}"
             />
           </div>
           <div class="news-details">
+        <span class="country">${article.country}</span>
+
             <h2 class="news-title">${article.title}</h2>
-            <div class="news-description">${article.content}</div>
-            <div class="news-date">${article.publishedAt}</div>
+            <div class="news-description">${article.description}</div>
+            <div class="news-date">${new Date(article.pubDate).toLocaleString()}</div>
           </div>
         </a>
       </article>
     `;
         newsContainer.insertAdjacentHTML("afterbegin", markup);
     });
-    // Scroll to the top of the page
+    const newsCards = document.querySelectorAll(".news-article");
+    newsCards.forEach((card)=>{
+        card.addEventListener("click", cardClick);
+    });
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 };
-const filterNews = async function(category) {
+const cardClick = function(event) {
+    const clickedTitle = event.currentTarget.dataset.title;
+    const clickedNews = articles.find((article)=>article.title === clickedTitle);
+    overlay.innerHTML = "";
+    displayPopup(clickedNews);
+    overlay.style.display = "flex";
+};
+const displayPopup = function(article) {
+    const markup = `
+    <div class="popup">
+      <div class="detail__img--box">
+        <span class="category">${article.category}</span>
+        <span class="close">&times;</span>
+        <img
+          class="detail__img"
+          src="${article.image_url}"
+          alt="${article.title}"
+        />
+      </div>
+      <div class="popup__detail">
+         <h3>${article.title}</h3>
+        <p class="date">${new Date(article.pubDate).toLocaleString()}</p>
+        <p>
+        ${article.content}
+        </p>
+        <a href="${article.link}"  target="_blank" class="news-link">main source</a>
+      </div>
+    </div>
+    `;
+    overlay.insertAdjacentHTML("afterbegin", markup);
+    overlay.style.display = "block";
+    const closePopup = document.querySelector(".close");
+    const PopupCard = document.querySelector(".popup");
+    closePopup.addEventListener("click", ()=>{
+        PopupCard.style.animation = "holeOut .5s ease";
+        setTimeout(()=>{
+            overlay.style.display = "none";
+        }, 400);
+    });
+};
+const searchNews = async function(query) {
     try {
-        const res = await fetch(`${api_URL}top-headlines?country=${country}&category=${category}&apiKey=${key}`);
+        const res = await fetch(`https://newsdata.io/api/1/news?apikey=${api_Key}&q=${query}`);
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        articles = data.articles.filter((article)=>article.title !== "[Removed]" && article.content !== null && article.description !== null && article.urlToImage !== null && article.urlToImage !== "");
+        articles = data.results.filter((article)=>article.title !== "null" && article.content !== "null" && article.language == "english" && article.description !== null && article.image_url !== null && article.image_url !== undefined && article.pubDate !== undefined && article.image_url !== "");
+        displayNews(articles);
+    } catch (err) {
+        console.error(err);
+    }
+};
+// searchInput.addEventListener("input", function (event) {
+//   const query = event.target.value;
+//   setTimeout(() => {
+//     searchNews(query);
+//   }, 500);
+// });
+searchInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        const query = event.target.value;
+        searchNews(query);
+    }
+});
+const filterNews = async function(category) {
+    searchInput.value = "";
+    try {
+        const res = await fetch(`https://newsdata.io/api/1/news?apikey=${api_Key}&category=${category}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+        articles = data.results.filter((article)=>article.title !== "null" && article.content !== "null" && article.language == "english" && article.description !== null && article.image_url !== null && article.image_url !== undefined && article.pubDate !== undefined && article.image_url !== "");
         displayCategory(articles, category);
-        createPaginationButtons();
     } catch (err) {
         console.error(err);
     }
@@ -89,12 +141,12 @@ const displayCategory = function(articles, category) {
     searchInput.value = "";
     articles.forEach((article)=>{
         const markup = `
-        <article>
-          <a href="${article.url}" class="news-card">
+        <article  class="news-article">
+          <a href="${article.link}" class="news-card" target="_blank">
             <div class="img__box">
               <img
                 class="news-image"
-                src="${article.urlToImage}"
+                src="${article.image_url}"
                 alt="${article.title}"
                 title="${article.title}"
               />
@@ -102,32 +154,20 @@ const displayCategory = function(articles, category) {
             <div class="news-details">
               <div class="news-category">${category}</div>
               <h2 class="news-title">${article.title}</h2>
-              <div class="news-description">${article.content}</div>
-              <div class="news-date">${article.publishedAt}</div>
+              <div class="news-description">${article.description}</div>
+              <div class="news-date">${article.pubDate}</div>
             </div>
           </a>
         </article>
       `;
         newsContainer.insertAdjacentHTML("afterbegin", markup);
     });
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 };
-const createPaginationButtons = function() {
-    const pages = Math.ceil(articles.length / resultsPerPage);
-    paginationContainer.innerHTML = "";
-    for(let i = 1; i <= pages; i++){
-        const button = document.createElement("button");
-        button.type = "button";
-        button.classList.add("pagination-button");
-        button.textContent = i;
-        if (i === currentPage) button.classList.add("current");
-        button.addEventListener("click", function() {
-            currentPage = i;
-            displayNews(articles, currentPage);
-            createPaginationButtons();
-        });
-        paginationContainer.appendChild(button);
-    }
-};
+// showNews('us');
 showNews();
 
 //# sourceMappingURL=index.62406edb.js.map
